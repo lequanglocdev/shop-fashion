@@ -1,8 +1,22 @@
-# React + Vite
+## Công nghệ sử dụng
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- React
+- Redux Toolkit
+- MUI (Material-UI)
+- Vite
 
-Currently, two official plugins are available:
+## Cách chạy dự án
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+
+npm run dev
+```
+
+## Mẫu thông tin thanh toán vnpay (kiểm tra):
+
+Bank NCB
+Card Number 9704198526191432198
+Cardholder Name NGUYEN VAN A
+Issue Date 07/15
+OTP Password 123456
