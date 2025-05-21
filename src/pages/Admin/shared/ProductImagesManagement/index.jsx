@@ -24,7 +24,7 @@ const ProductImagesManagement = () => {
     fetch("http://localhost:8080/adamstore/v1/file/all?pageNo=1&pageSize=100", {
       method: "GET",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`, // Gửi token ở đây
       },
     })

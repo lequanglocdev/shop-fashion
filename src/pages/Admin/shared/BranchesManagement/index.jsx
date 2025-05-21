@@ -125,7 +125,7 @@ const BranchesManagement = () => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
         }
       );
@@ -174,7 +174,7 @@ const BranchesManagement = () => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
           },
         }
       );

@@ -68,7 +68,7 @@ const ColorsManagement = () => {
     fetch("http://localhost:8080/adamstore/v1/colors?pageNo=1&pageSize=10", {
       method: "GET",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`, // Gửi token ở đây
       },
     })
@@ -87,7 +87,7 @@ const ColorsManagement = () => {
     fetch("http://localhost:8080/adamstore/v1/colors", {
       method: "POST",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ name: newColor }),
@@ -115,7 +115,7 @@ const ColorsManagement = () => {
     fetch(`http://localhost:8080/adamstore/v1/colors/${editingColorId}`, {
       method: "PUT",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ name: editingColorName }),

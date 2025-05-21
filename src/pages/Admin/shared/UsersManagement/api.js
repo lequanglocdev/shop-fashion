@@ -4,7 +4,7 @@ export const createUser = async (userData) => {
   const response = await fetch("http://localhost:8080/adamstore/v1/users", {
     method: "POST",
     headers: {
-      // "Content-Type": "application/json",
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(userData),
@@ -24,7 +24,7 @@ export const fetchUser = async () => {
     "http://localhost:8080/adamstore/v1/users?pageNo=1&pageSize=10",
     {
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     }
@@ -46,7 +46,7 @@ export const updateUser = async (id, userData) => {
     {
       method: "PUT",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
@@ -69,7 +69,7 @@ export const deleteUser = async (userId, token) => {
     {
       method: "DELETE",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     }
@@ -89,7 +89,7 @@ export const restoreUser = async (userId, token) => {
       {
         method: "PATCH",
         headers: {
-          // "Content-Type": "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }

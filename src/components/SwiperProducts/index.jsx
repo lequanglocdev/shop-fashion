@@ -46,7 +46,7 @@ const SwiperProducts = () => {
       "http://localhost:8080/adamstore/v1/categories?pageNo=1&pageSize=10",
       {
         headers: {
-          // "Content-Type": "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }
@@ -64,7 +64,7 @@ const SwiperProducts = () => {
             `http://localhost:8080/adamstore/v1/products?pageNo=${pageNo}&pageSize=10`,
             {
               headers: {
-                // "Content-Type": "application/json",
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
               },
             }
