@@ -365,9 +365,7 @@ const ProductsManagement = () => {
             error={!!errors.productName}
             helperText={errors.productName}
           />
-          <TextareaAutosize
-            aria-label="minimum height"
-            maxRows={4}
+          <TextField
             placeholder="Mô tả"
             style={{ width: "100%", marginTop: "10px" }}
             margin="dense"

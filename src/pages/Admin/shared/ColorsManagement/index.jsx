@@ -34,6 +34,7 @@ const colorMap = {
   hồng: "#e84393",
   tím: "#6c5ce7",
   lục: "#00b894",
+  kem: "#F8EFBA",
 };
 
 const ColorsManagement = () => {
@@ -66,7 +67,7 @@ const ColorsManagement = () => {
     const token = localStorage.getItem("accessToken");
 
     fetch(
-      "http://222.255.119.40:8080/adamstore/v1/colors?pageNo=1&pageSize=10",
+      "http://222.255.119.40:8080/adamstore/v1/colors?pageNo=1&pageSize=20",
       {
         method: "GET",
         headers: {
