@@ -25,7 +25,6 @@ const CheckMyCart = () => {
           <MyCart />
         </Stack>
       </Container>
-
       <Footer />
     </>
   );

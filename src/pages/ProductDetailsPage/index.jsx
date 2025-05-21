@@ -24,6 +24,7 @@ import styles from "./style.module.css";
 import ProductTitle from "./shared/ProductTitle";
 import ProductImage from "./shared/ProductImage";
 import ProductPrice from "./shared/ProductPrice";
+import ProductBrand from "./shared/ProductBrand";
 import ProductStockKeepingUnit from "./shared/ProductStockKeepingUnit";
 import ProductColorSection from "./shared/ProductColorSection";
 import ProductSizeSelection from "./shared/ProductSizeSelection";
@@ -57,16 +58,14 @@ const ProductDetails = () => {
       const token = localStorage.getItem("accessToken");
       try {
         const res = await axios.get(
-          `http://localhost:8080/adamstore/v1/product-variants/${id}/${colorId}/${sizeId}`,
+          `http://222.255.119.40:8080/adamstore/v1/product-variants/${id}/${colorId}/${sizeId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         setSelectedVariant(res.data.result);
-        // Cập nhật imageUrl nếu biến thể có hình ảnh, nếu không giữ nguyên
-        setImageUrl(res.data.result.imageUrl || imageUrl);
+        setImageUrl(res.data.result.imageUrl || imageUrl); // Cập nhật ảnh nếu có
       } catch (err) {
-        console.error("Lỗi khi lấy biến thể cụ thể:", err);
         setSnackbar({
           open: true,
           message: "Lỗi khi lấy thông tin biến thể!",
@@ -82,21 +81,19 @@ const ProductDetails = () => {
     const token = localStorage.getItem("accessToken");
     setLoading(true);
 
-    // Lấy thông tin sản phẩm
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/adamstore/v1/products/${id}`,
+          `http://222.255.119.40:8080/adamstore/v1/products/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         const productData = res.data.result;
+        console.log("product data>>>>", productData);
         setProduct(productData);
-        // Nếu không có passedImageUrl từ location.state, lấy từ API
         if (!imageUrl) {
-          // API trả về product.images là một mảng chuỗi, không phải mảng đối tượng
-          const fallbackUrl = productData.images?.[0] || "";
+          const fallbackUrl = productData.images?.[0]?.imageUrl;
           setImageUrl(fallbackUrl);
         }
       } catch (err) {
@@ -113,7 +110,7 @@ const ProductDetails = () => {
     const fetchVariants = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8080/adamstore/v1/products/${id}/product-variants`,
+          `http://222.255.119.40:8080/adamstore/v1/products/${id}/product-variants`,
           {
             params: { pageNo: 1, pageSize: 10 },
             headers: { Authorization: `Bearer ${token}` },
@@ -162,11 +159,11 @@ const ProductDetails = () => {
   useEffect(() => {
     if (selectedColor && selectedSize) {
       const colorId = variants.find(
-        (group) => group.color.name === selectedColor
-      )?.color.id;
+        (group) => group?.color?.name === selectedColor
+      )?.color?.id;
       const sizeId = variants
-        .find((group) => group.color.name === selectedColor)
-        ?.sizes.find((s) => s.size.name === selectedSize)?.size.id;
+        .find((group) => group?.color?.name === selectedColor)
+        ?.sizes.find((s) => s.size?.name === selectedSize)?.size?.id;
 
       if (colorId && sizeId) {
         fetchVariant(colorId, sizeId);
@@ -199,18 +196,22 @@ const ProductDetails = () => {
     ? {
         id: product.id,
         title: product.name,
-        images: imageUrl, // imageUrl là chuỗi, không phải đối tượng
+        images:
+          product?.images?.map((img) => ({
+            original: img.imageUrl,
+            thumbnail: img.imageUrl,
+          })) || [],
         price: selectedVariant
           ? selectedVariant.price
           : variants[0]?.sizes[0]?.price || 0,
-        minimumOrderQuantity: product.soldQuantity || 0,
-        totalReviews: product.totalReviews || 0,
-        averageRating: product.averageRating || 0,
+        minimumOrderQuantity: product.soldQuantity || 0, // Số lượng đã bán: 0
+        totalReviews: product.totalReviews || 0, // Tổng số đánh giá: 0
+        averageRating: product.averageRating || 0, // Điểm đánh giá trung bình: mặc định 0 vì API không cung cấp
         brand: product.brand || "Không xác định",
         sku: product.sku || "N/A",
         tags: product.category?.name || "Không xác định",
         stock: selectedVariant
-          ? selectedVariant.quantity
+          ? selectedVariant?.quantity
           : variants[0]?.sizes[0]?.quantity || 0,
         description:
           product.description ||
@@ -218,7 +219,7 @@ const ProductDetails = () => {
         productVariantId: selectedVariant?.id,
       }
     : null;
-  console.log("productData:", productData);
+  console.log("productData:>>>>", productData);
 
   const buttonOptionColors = variants.map((group) => group.color.name) || [
     "Trắng",
@@ -229,6 +230,9 @@ const ProductDetails = () => {
       .find((group) => group.color.name === selectedColor)
       ?.sizes.map((s) => s.size.name) || [];
 
+  useEffect(() => {
+    console.log("selectedVariant:>>>", selectedVariant);
+  }, [selectedVariant]);
   return (
     <>
       <Header />
@@ -256,6 +260,7 @@ const ProductDetails = () => {
           <ProductTitle products={productData} loading={loading} />
           <ProductReviews products={productData} loading={loading} />
           <ProductPrice products={productData} loading={loading} />
+          <ProductBrand products={productData} loading={loading} />
           <ProductStockKeepingUnit products={productData} loading={loading} />
 
           <ProductColorSection
@@ -298,9 +303,7 @@ const ProductDetails = () => {
         <Typography variant="h5" gutterBottom>
           Mô tả sản phẩm
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: "text.secondary", whiteSpace: "pre-wrap" }}>
+        <Typography variant="body1" sx={{ color: "text.secondary" }}>
           {productData?.description || "Không có mô tả cho sản phẩm này."}
         </Typography>
       </Container>

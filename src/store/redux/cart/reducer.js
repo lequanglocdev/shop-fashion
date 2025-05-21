@@ -114,7 +114,7 @@ export const fetchCartItemsFromApi = () => async (dispatch, getState) => {
 
   try {
     const response = await axios.get(
-      "http://localhost:8080/adamstore/v1/cart-items",
+      "http://222.255.119.40:8080/adamstore/v1/cart-items",
       {
         headers: { Authorization: `Bearer ${token}` },
         params: { pageNo: 1, pageSize: 10 },
@@ -147,7 +147,7 @@ export const clearCartItemsFromApi = () => async (dispatch, getState) => {
   try {
     // Lấy danh sách giỏ hàng
     const response = await axios.get(
-      "http://localhost:8080/adamstore/v1/cart-items",
+      "http://222.255.119.40:8080/adamstore/v1/cart-items",
       {
         headers: { Authorization: `Bearer ${token}` },
         params: { pageNo: 1, pageSize: 10 },
@@ -158,7 +158,7 @@ export const clearCartItemsFromApi = () => async (dispatch, getState) => {
     // Xóa từng mục
     for (const item of cartItems) {
       await axios.delete(
-        `http://localhost:8080/adamstore/v1/cart-items/${item.id}`,
+        `http://222.255.119.40:8080/adamstore/v1/cart-items/${item.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
     }
@@ -189,7 +189,7 @@ export const updateCartItemQuantity =
 
     try {
       await axios.put(
-        `http://localhost:8080/adamstore/v1/cart-items/${id}`,
+        `http://222.255.119.40:8080/adamstore/v1/cart-items/${id}`,
         { quantity: newQuantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );

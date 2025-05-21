@@ -11,14 +11,14 @@ const About = () => {
     const token = localStorage.getItem("accessToken");
     if (!token) {
       console.log("Không tìm thấy token", token);
-      
+
       return;
-    } 
+    }
 
     const fetchBranches = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/adamstore/v1/branches",
+          "http://222.255.119.40:8080/adamstore/v1/branches",
           {
             headers: { Authorization: `Bearer ${token}` },
             params: { pageNo: 1, pageSize: 10 },

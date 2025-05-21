@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Alert, Container, Snackbar, Stack, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Container,
+  Snackbar,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -8,12 +15,15 @@ import "swiper/css/navigation";
 
 import styles from "./index.module.css";
 import SwiperProducts from "@/components/SwiperProducts";
+import ProductsHome from "@/components/Header/Products/ProductsHome";
+import SectionProduct from "@/components/Header/Products/SectionProduct";
+import NewsSection from "@/components/Header/Products/NewsSection";
 
 const slides = [
-  "/src/assets/images/backgroundFashions/backgroundHomePage.jpg",
-  "/src/assets/images/backgroundFashions/backgroundHomePage-1.jpg",
-  "/src/assets/images/backgroundFashions/backgroundHomePage-2.jpg",
-  "/src/assets/images/backgroundFashions/backgroundHomePage-3.jpg",
+  "/src/assets/images/backgroundFashions/banner4.webp",
+  "/src/assets/images/backgroundFashions/banner.jpg",
+  "/src/assets/images/backgroundFashions/banner2.webp",
+  "/src/assets/images/backgroundFashions/banner3.jpg",
 ];
 
 // Ánh xạ ID danh mục sang đường dẫn ảnh tương ứng
@@ -40,7 +50,7 @@ const Home = () => {
     const token = localStorage.getItem("accessToken");
 
     fetch(
-      "http://localhost:8080/adamstore/v1/categories?pageNo=1&pageSize=10",
+      "http://222.255.119.40:8080/adamstore/v1/categories?pageNo=1&pageSize=10",
       {
         method: "GET",
         headers: {
@@ -81,7 +91,7 @@ const Home = () => {
     const orderId = queryParams.get("vnp_TxnRef");
     const token = localStorage.getItem("accessToken");
     if (responseCode === "00" && orderId) {
-      fetch("http://localhost:8080/adamstore/v1/orders/vn-pay-callback", {
+      fetch("http://222.255.119.40:8080/adamstore/v1/orders/vn-pay-callback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -151,7 +161,7 @@ const Home = () => {
         pagination={{ clickable: true }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        style={{ width: "100%", height: "400px", color: "#fff" }}>
+        style={{ width: "100%", height: "600px", color: "#fff" }}>
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <img
@@ -170,32 +180,18 @@ const Home = () => {
           fontWeight: "bold",
         }}
         variant="body1">
-        Danh mục sản phẩm
+        Sản phẩm nổi bật
       </Typography>
-      <Container className={styles.wrapperCategory}>
-        {categories.map((item, index) => (
-          <div key={index}>
-            <Link to={`/product-lists?category=${item.id}`}>
-              <Stack className={styles.wrapperImg}>
-                <img
-                  className={styles.mediaImg}
-                  src={categoryImages[item.id] || "/default.jpg"}
-                  alt={item.name}
-                />
-                <Stack className={styles.contentImg}>
-                  <h2 style={{ fontSize: 30, fontWeight: 500, color: "white" }}>
-                    {item.name.toUpperCase()}
-                  </h2>
-                </Stack>
-              </Stack>
-            </Link>
-          </div>
-        ))}
-      </Container>
-
-      <Container maxWidth="lg">
-        <SwiperProducts />
-      </Container>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <ProductsHome />
+      </Box>
+      <SectionProduct />
+      <NewsSection />
     </>
   );
 };
