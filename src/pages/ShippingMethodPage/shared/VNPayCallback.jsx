@@ -22,7 +22,7 @@ const VNPayCallback = () => {
     const token = localStorage.getItem("accessToken");
     axios
       .post(
-        `http://222.255.119.40:8080/adamstore/v1/orders/vn-pay-callback`,
+        `http://222.255.119.40:8080/adamstore/v1/orders/vn-pay`,
         {
           responseCode: responseCode,
           orderId: parseInt(orderId),
