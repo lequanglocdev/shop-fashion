@@ -114,9 +114,9 @@ const MyOrders = () => {
             "& .MuiTab-root": { fontSize: 16, fontWeight: 500, color: "#333" },
             "& .MuiTabs-indicator": { backgroundColor: "#000" },
           }}>
-          <Tab value="PENDING" label="Chờ thanh toán" />
-          <Tab value="PROCESSING" label="Đang xử lý" />
-          <Tab value="SHIPPED" label="Đang giao hàng" />
+          <Tab value="PENDING" label="Thanh toán VNPAY" />
+          <Tab value="PROCESSING" label="Thanh toán tiền mặt" />
+
           <Tab value="DELIVERED" label="Đã giao hàng" />
           <Tab value="CANCELLED" label="Đã hủy" />
         </Tabs>
@@ -158,9 +158,9 @@ const MyOrders = () => {
                     <TableCell sx={{ fontWeight: "bold", fontSize: 16 }}>
                       Tổng tiền
                     </TableCell>
-                    <TableCell sx={{ fontWeight: "bold", fontSize: 16 }}>
+                    {/* <TableCell sx={{ fontWeight: "bold", fontSize: 16 }}>
                       Hành động
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -175,7 +175,7 @@ const MyOrders = () => {
                       <TableCell>
                         {order.totalPrice?.toLocaleString()}đ
                       </TableCell>
-                      <TableCell>
+                      {/* <TableCell>
                         {order.orderStatus === "PENDING" && (
                           <Button
                             variant="contained"
@@ -188,7 +188,7 @@ const MyOrders = () => {
                             Thanh toán lại
                           </Button>
                         )}
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   ))}
                 </TableBody>

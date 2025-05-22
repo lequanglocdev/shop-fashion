@@ -37,7 +37,7 @@ const About = () => {
     {
       titleAboutUs: "Câu chuyện về chúng tôi",
       firstLineAboutUs:
-        "Mọi chuyện bắt đầu vào năm 2025 khi người sáng lập của chúng tôi, Trịnh và Min, vật lộn để tìm quần áo giá cả phải chăng, chất lượng cao và bền vững. Cả 2 chúng tôi nhận ra rằng hầu hết các thương hiệu thời trang đều tập trung vào phong cách hoặc tính bền vững—nhưng hiếm khi cả hai. Đó là lúc ý tưởng về Fashion Store ra đời: một thương hiệu kết hợp các thiết kế hợp thời trang với vật liệu thân thiện với môi trường.",
+        "Mọi chuyện bắt đầu vào năm 2025 khi người sáng lập của chúng tôi vật lộn để tìm quần áo giá cả phải chăng, chất lượng cao và bền vững. Cả 2 chúng tôi nhận ra rằng hầu hết các thương hiệu thời trang đều tập trung vào phong cách hoặc tính bền vững—nhưng hiếm khi cả hai. Đó là lúc ý tưởng về Fashion Store ra đời: một thương hiệu kết hợp các thiết kế hợp thời trang với vật liệu thân thiện với môi trường.",
       secondLineAboutUs:
         "Ngày nay, Fashion Store hợp tác với các nhà sản xuất và hỗ trợ các hoạt động thương mại công bằng để mang đến thời trang bền vững, phong cách cho những người tiêu dùng trên toàn thế giới.",
       thirdLineAboutUs:

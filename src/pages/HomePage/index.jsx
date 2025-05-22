@@ -18,6 +18,8 @@ import SwiperProducts from "@/components/SwiperProducts";
 import ProductsHome from "@/components/Header/Products/ProductsHome";
 import SectionProduct from "@/components/Header/Products/SectionProduct";
 import NewsSection from "@/components/Header/Products/NewsSection";
+import { useDispatch } from "react-redux";
+import { clearCartItemsFromApi } from "@/store/redux/cart/reducer";
 
 const slides = [
   "/src/assets/images/backgroundFashions/banner4.webp",
@@ -39,6 +41,7 @@ const categoryImages = {
 const Home = () => {
   const location = useLocation();
   const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: "",
@@ -115,6 +118,7 @@ const Home = () => {
               message: "Thanh toán thành công!",
               severity: "success",
             });
+            dispatch(clearCartItemsFromApi());
           } catch (error) {
             console.error("❌ Không parse được JSON:", error);
             setSnackbar({

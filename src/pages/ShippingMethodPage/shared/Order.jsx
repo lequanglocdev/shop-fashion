@@ -367,7 +367,7 @@ const Order = () => {
 
       if (selectedPaymentMethod === "VNPAY") {
         const paymentResponse = await axios.get(
-          `http://222.255.119.40:8080/adamstore/v1/orders/${orderId}/vn-pay`,
+          `http://222.255.119.40:8080/adamstore/v1/orders/${orderId}/vn-pay-callback`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         const paymentUrl = paymentResponse.data.result.paymentUrl;
